@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
+    defaultConfig {
+        applicationId "zsc.kalends.tensortest"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a","x86"
+        }
+    }
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'org.tensorflow:tensorflow-android:1.13.1'
+//    implementation 'org.pytorch:pytorch_android:1.4.0-SNAPSHOT'
+    //implementation 'org.pytorch:pytorch_android_torchvision:1.4.0-SNAPSHOT'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation project(':openCVLibrary340')
+    implementation files('libs/commons-io-2.6.jar')
+    implementation (name: 'pytorch_android-1.4.0-20191231.095518-93', ext: 'aar')
+    implementation (name: 'pytorch_android_torchvision-1.4.0-20191231.095525-93', ext: 'aar')
+    implementation 'com.github.yalantis:context-menu.android:1.1.4'
+    implementation 'com.github.yalantis:Side-Menu.Android:1.0.1'
+    implementation 'com.github.ozodrukh:CircularReveal:2.1.0'
+    implementation 'com.github.CodingEnding:PopupLayout:v1.0'
+}
